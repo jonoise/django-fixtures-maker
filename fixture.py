@@ -3,9 +3,14 @@ class Fixture():
         self.app = app
         self.model = model
         self.fields = fields
+    
+    def listing_fields(self):
+        ls = []
+        ls.append(self.fields)
+        return ls
 
     def check_fields(self):
-        if self.fields is not list:
-            return False
+        if type(self.fields) is list:
+            return self.fields            
         else:
-            return True
+            return self.listing_fields()
