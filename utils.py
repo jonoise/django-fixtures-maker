@@ -30,6 +30,9 @@ def check_extension(extension):
         print('y cambiar la extensión del archivo a una conocida por el programa. (CSV o XLSX). Recuerda que si eliges CSV, el delimitante deben ser comas (,) y no puntos y coma (;)')
 
 
+###########################################
+# Gives the number of columns in the file #
+###########################################
 def total_cols_xlsx(book):
     columns = book.active.columns
     total_columns = 0
@@ -37,6 +40,10 @@ def total_cols_xlsx(book):
         total_columns += 1
     return total_columns
 
+
+###########################################
+## Gives the number of rows in the file ###
+###########################################
 def total_rows_xlsx(book):
     rows = book.active.rows
     total_rows = 0
@@ -44,15 +51,21 @@ def total_rows_xlsx(book):
         total_rows +=1
     return total_rows
 
+
+########################################
+# Return a list of titles on first col #
+########################################
 def get_headers_xlsx(book):
     headers_list = []
     for i in range(total_cols_xlsx(book)):
         headers_list.append(book.active.cell(row=1, column=i+1).value)
     return headers_list
 
-def get_rows_xlsx(book):
-    row_list = []
+
+#########################################
+# Return each row value for each column #
+#########################################
+def rows_generator_xlsx(book):
     for i in range(total_rows_xlsx(book)):
         for j in range(total_cols_xlsx(book)):
-            row_list.append(book.active.cell(row=i+1, column=j+1).value)
-    return row_list
+            yield book.active.cell(row=i+1, column=j+1).value
