@@ -1,7 +1,7 @@
 import json
 
 class Fixture():
-    def __init__(self, app, model, headers=None, list_of_fields=None):
+    def __init__(self, app, model, headers=None, list_of_fields=None, json_fn):
         self.app = app
         self.model = model
         self.headers = headers
@@ -9,7 +9,7 @@ class Fixture():
         self.objects = []
         self.object_ = {}
         self.body = {}
-        self.json_filename = 'carraspera'
+        self.json_filename = json_fn
 
     def create_objects(self):
         pk = 0
