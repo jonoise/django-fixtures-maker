@@ -11,18 +11,11 @@ def check_existence(file_path):
     else:
         return False
 
-def check_extension(extension):
-    if extension == 'csv':
-        print('Seleccionaste CSV, asegurate que tu archivo sigue las siguientes pautas:')
-        print('')
-        print('1- Asegúrate que las casillas están separadas por comas (,) y no por punto y coma (;).')
-        print('2- Si tu archivo cuenta con números, asegúrate que los decimales están separados por un punto (.) y no una coma (,).')
-        print('3- Recuerda que los fields que estén mapeados a un Foreign Key deben incluir el número entero del ID del modelo padre.')
-    
+def check_extension(extension): 
     if extension == 'xlsx':
         print('Seleccionaste XLSX, asegurate que tu archivo sigue las siguientes pautas:')
         print('')
-        print('1- Los títulos de columnas tienen el mismo nombre que tus modelos en la base de datos.')
+        print('1- Los títulos de columnas tienen el mismo nombre que los fields que tus modelos en la base de datos.')
         print('2- Recuerda que los fields que estén mapeados a un Foreign Key deben incluir el número entero del ID del modelo padre.')
 
     else:
@@ -33,7 +26,7 @@ def check_extension(extension):
 ###########################################
 # Gives the number of columns in the file #
 ###########################################
-def total_cols_xlsx(book):
+def get_number_cols(book):
     columns = book.active.columns
     total_columns = 0
     for column in columns:
@@ -44,20 +37,20 @@ def total_cols_xlsx(book):
 ###########################################
 ## Gives the number of rows in the file ###
 ###########################################
-def total_rows_xlsx(book):
+def get_number_rows(book):
     rows = book.active.rows
     total_rows = 0
     for row in rows:
         total_rows +=1
-    return total_rows
+    return total_rows - 1 
 
 
 ########################################
 # Return a list of titles on first col #
 ########################################
-def get_headers_xlsx(book):
+def get_headers(book):
     headers_list = []
-    for i in range(total_cols_xlsx(book)):
+    for i in range(get_number_cols(book)):
         headers_list.append(book.active.cell(row=1, column=i+1).value)
     return headers_list
 
@@ -65,7 +58,18 @@ def get_headers_xlsx(book):
 #########################################
 # Return each row value for each column #
 #########################################
-def rows_generator_xlsx(book):
-    for i in range(total_rows_xlsx(book)):
-        for j in range(total_cols_xlsx(book)):
+def rows_generator(book):
+    for i in range(get_number_rows(book)):
+        for j in range(get_number_cols(book)):
             yield book.active.cell(row=i+1, column=j+1).value
+
+def get_list_of_rows(book):
+    rows = book.active.rows
+    rows_ = []
+    for row in rows:
+        row_appended = []
+        for value in row:
+            row_appended.append(value.value)
+        rows_.append(row_appended)
+    rows_.pop(0)
+    return rows_
