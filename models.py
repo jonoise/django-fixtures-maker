@@ -1,7 +1,7 @@
 import json
 
 class Fixture():
-    def __init__(self, app, model, headers=None, list_of_fields=None, json_fn):
+    def __init__(self, app, model, headers=None, list_of_fields=None, json_fn=None):
         self.app = app
         self.model = model
         self.headers = headers
@@ -35,4 +35,11 @@ class Fixture():
             f.write(self.return_json())
 
 
-
+class Menu:
+    def de_entrada(self):
+        print('Menú principal. Selecciona un número:')
+        print('1- Ver headers (primera línea del excel)')
+        print('2- Verificar número de columnas.')
+        print('3- Verificar número de rows.')
+        print('4- Crear fixtura (json)')
+        print('')
