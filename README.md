@@ -9,7 +9,7 @@ Para más información sobre cómo funcionan las fixturas y los comandos para ha
 
 * El repositorio cuenta con 2 directorios (excel y json). El directorio excel es donde deben vivir los archivos que quieres convertir a una fixtura JSON. Cuando el programa te pida ingresar el nombre del archivo de excel debes escribir sólo el nombre SIN la extensión (.xlsx). Este archivo debe estar dentro del directorio "excel", de otra manera el programa no podrá encontrar el archivo.
 * Cuando se ejecute el programa, la fixtura creada será almacenada en la carpeta "json".
-* 
+
 * Debes crear un ambiente virtual, activarlo e instalar los requirements del proyecto:
 ```
 pip install -r requirements.txt
