@@ -111,12 +111,11 @@ class Menu():
 
     def instructions(self):
         print('')
-        print('Para leer la documentación detallada ejecuta el comando "help". O ve al repositorio del proyecto')
-        print('y lee el README.md.')
+        print('Para leer la documentación detallada ve al repositorio del proyecto y lee el README.md y el Release Notes')
         print('')
         print('Instrucciones:')
         print('El programa busca en la carpeta "excel" por tus archivos de excel en formato XLSX. Si tu archivo')
-        print('de excel tiene otra extensión, debes cambiar el formato del archivo y posteriormente agregarlo a')
+        print('de excel tiene otra extensión, debes cambiar el formato del archivo y posteriormente agregarlo a la')
         print('carpeta "excel". Cuando se te solicite el nombre del archivo, escribe SOLO el nombre (sin la extensión).')
         print('')
 
